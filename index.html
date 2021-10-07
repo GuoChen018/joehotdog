@@ -1,0 +1,244 @@
+<!-- URL:  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joe's Hotdog</title>
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+            /* outline: solid 1px rgba(255, 0, 0, 0.61); */
+            margin: 0px;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 40px;
+            display: block;
+            text-align: center;
+            background-image: url("hotdog.jpg");
+            background-size: cover;
+            background-position: center;
+            padding: 80px;
+            margin: 0px;
+        }
+
+        h2{
+            margin-bottom: 24px;
+        }
+
+        .info {
+            font-size: 20px;
+            width: 30%;
+            padding: 40px;
+            outline: solid 2px rgba(255, 0, 0, 0.61);
+            border-radius: 10px;
+            margin: 40px auto;
+
+        }
+
+        .column {
+            float: left;
+            width: 50%;
+        }
+
+        .row {
+            margin-bottom: 20px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        hr {
+            margin-bottom: 20px;
+        }
+
+        .alignRight {
+            text-align: right;
+        }
+        
+    </style>
+    <script language="javascript">
+
+        //Set variable for each item 
+        let hotdog = {
+            name: "HOTDOG",
+            price: 3.75,
+            quantity: 0
+        };
+        let fries = {
+            name: "FRIES",
+            price: 2,
+            quantity: 0
+        };
+        let drinks = {
+            name: "DRINKS",
+            price: 1.5,
+            quantity: 0
+        };
+        
+        //Prompt user to enter item quantity for each
+        hotdog.quantity = prompt("How many hotdogs do you want?");
+        fries.quantity = prompt("How many fries do you want?");
+        drinks.quantity = prompt("How many drinks do you want?");
+
+        //Initialization
+        var discount = 0;
+        var discounted = 0; 
+
+        //If subtotal >= 20, then apply the 10% Joe's Special discount
+        function joeSpecial (){
+            if (subTotal >= 20) {
+                discounted = subTotal*0.9; 
+                discount = subTotal*0.1;
+            }
+            else {
+                discounted = subTotal;
+                discount = 0;
+            }
+            return discounted, discount; 
+        }
+
+        //Initialization
+        var totalPrice, taxRounded, discountRounded, discountedRounded, tax, afterTax = 0; 
+
+        //Calculate the total price
+        function total() {
+
+            //Calculate total for each item + add them to generate subtotal
+            hotdogTotal = hotdog.price*hotdog.quantity;
+            friesTotal = fries.price*fries.quantity;
+            drinksTotal = drinks.price*drinks.quantity;
+
+            //Add up the costs of each 
+            subTotal = hotdogTotal + friesTotal + drinksTotal;
+
+            //Check if Joe's special discount can be implemented
+            joeSpecial();
+
+            //Round price after discount to two decimal places
+            discountedRounded = parseFloat(discounted.toFixed(2));
+
+            //Round discount to two decimal places
+            discountRounded = parseFloat(discount.toFixed(2));
+
+            //Calculate tax
+            tax = discountedRounded*(6.25/100);
+
+            //Round tax to two decimal places
+            taxRounded = parseFloat(tax.toFixed(2));
+
+            //Calculate the total price by adding price after discount and tax (both rounded)
+            afterTax = discountedRounded + taxRounded;
+
+            return afterTax; 
+        }
+    </script>
+</head>
+<body>
+    <h1>Joe's Hotdog Stand</h1>
+    
+    <section class="info">
+        <h2>Here is your receipt: <br></h2>
+
+        <!-- Hotdog quantity + price -->
+        <div class="row">
+            <div class="column">
+                <script language="javascript">
+                    total();
+                    document.write(hotdog.quantity, " ", hotdog.name, "<br>"); 
+                </script>
+            </div>
+            <div class="alignRight" class="column">
+                <script language="javascript">
+                    document.write("$", hotdogTotal);
+                </script>    
+            </div>
+        </div>
+
+        <!-- French fries quantity + price -->
+        <div class="row">
+            <div class="column">
+                <script language="javascript">
+                    document.write(fries.quantity, " ", fries.name, "<br>");
+                </script>
+            </div>
+            <div class="alignRight" class="column">
+                <script language="javascript">
+                    document.write("$", friesTotal);
+                </script>    
+            </div>
+        </div>
+
+        <!-- Drinks quantity + price -->
+        <div class="row">
+            <div class="column">
+                <script language="javascript">
+                    document.write(drinks.quantity, " ", drinks.name);
+                </script>
+            </div>
+            <div class="alignRight" class="column">
+                <script language="javascript">
+                    document.write("$", drinksTotal);
+                </script>    
+            </div>
+        </div> 
+        <hr>
+
+        <!-- Subtotal -->
+        <div class="row">
+            <div class="column">
+                <p>Subtotal</p>
+            </div>
+            <div class="alignRight" class="column">
+                <script language="javascript">
+                    document.write("$", subTotal);
+                </script>   
+            </div>
+        </div> 
+
+        <!-- Amount of discount  -->
+        <div class="row">
+            <div class="column">
+                <p>Discount (10%)</p>
+            </div>
+            <div class="alignRight" class="column">
+                <script language="javascript">
+                    document.write("-", discountRounded);
+                </script>   
+            </div>
+        </div> 
+
+        <!-- Amount of tax  -->
+        <div class="row">
+            <div class="column">
+                <p>Tax (6.25%)</p>
+            </div>
+            <div class="alignRight" class="column">
+                <script language="javascript">
+                    document.write("$", taxRounded);
+                </script>   
+            </div>
+        </div> 
+
+        <!-- Total price -->
+        <div class="row">
+            <div class="column">
+                <p><b>Total</b></p>
+            </div>
+            <div class="alignRight" class="column">
+                <script language="javascript">
+                    document.write("$", afterTax);
+                </script>   
+            </div>
+        </div> 
+    </section>
+</body>
+</html>
