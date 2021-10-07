@@ -78,8 +78,8 @@
             price: 2,
             quantity: 0
         };
-        let drinks = {
-            name: "DRINKS",
+        let sodas = {
+            name: "SODAS",
             price: 1.5,
             quantity: 0
         };
@@ -87,7 +87,7 @@
         //Prompt user to enter item quantity for each
         hotdog.quantity = prompt("How many hotdogs do you want?");
         fries.quantity = prompt("How many fries do you want?");
-        drinks.quantity = prompt("How many drinks do you want?");
+        sodas.quantity = prompt("How many sodas do you want?");
 
         //Initialization
         var discount = 0;
@@ -115,10 +115,10 @@
             //Calculate total for each item + add them to generate subtotal
             hotdogTotal = hotdog.price*hotdog.quantity;
             friesTotal = fries.price*fries.quantity;
-            drinksTotal = drinks.price*drinks.quantity;
+            sodasTotal = sodas.price*sodas.quantity;
 
             //Add up the costs of each 
-            subTotal = hotdogTotal + friesTotal + drinksTotal;
+            subTotal = hotdogTotal + friesTotal + sodasTotal;
 
             //Check if Joe's special discount can be implemented
             joeSpecial();
@@ -177,16 +177,16 @@
             </div>
         </div>
 
-        <!-- Drinks quantity + price -->
+        <!-- Sodas quantity + price -->
         <div class="row">
             <div class="column">
                 <script language="javascript">
-                    document.write(drinks.quantity, " ", drinks.name);
+                    document.write(sodas.quantity, " ", sodas.name);
                 </script>
             </div>
             <div class="alignRight" class="column">
                 <script language="javascript">
-                    document.write("$", drinksTotal);
+                    document.write("$", sodasTotal);
                 </script>    
             </div>
         </div> 
